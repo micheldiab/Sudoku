@@ -1,4 +1,5 @@
 from Settings import *
+from Check_Board import *
 import pygame
 import time
 def drawGrid():
@@ -27,6 +28,38 @@ def writeBoard(board,color):
     pygame.display.update()
 
 
+def solve():  #Backtracking
+    font = pygame.font.SysFont('arial', 50)
+    win.fill(WHITE)
+    drawGrid()
+    writeBoard(work_board,BLACK)
+    find = find_empty()
+    if not find:
+        return True
+    else:
+        row, column = find
+
+    for value in range(1, 10):
+        if valid(work_board, value, (row, column)):
+            work_board[row][column] = value
+
+            text = font.render(str(value),True, GREEN)
+            win.blit(text, ((10 + (row * CELLSIZE)), (column * CELLSIZE)))
+            pygame.display.update()
+            time.sleep(0.1)
+            if solve():  #Recursive
+                return True
+            work_board[row][column] = 0
+    return False
+
+
+def find_empty():
+    for i in range(9):
+        for j in range(9):
+            if work_board[i][j] == 0:
+                return (i, j)
+
+    return None
 def main_start(win):
     running = True
     while running:
@@ -41,8 +74,9 @@ def main_start(win):
                 running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    #Solve
+                    solve()
                     writeBoard(work_board,GREEN)
+                    writeBoard(original_board,BLACK)
                     running = False
                     time.sleep(5)
 
