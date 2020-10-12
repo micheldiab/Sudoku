@@ -17,14 +17,14 @@ def drawGrid():
 def writeBoard(board,color):
     font = pygame.font.SysFont('arial', 50)
     for i in range(9):
-        num_width = 10+ i * CELLSIZE
+        num_width = i * CELLSIZE
         for j in range(9):
-            num_height =CELLSIZE*j
+            num_height =10+CELLSIZE*j
             if board[i][j] == 0:
                 text = font.render(" ", True, color)
             else:
                 text = font.render(str(board[i][j]), True, color)
-                win.blit(text, (num_width,num_height))
+                win.blit(text, (num_height,num_width))
     pygame.display.update()
 
 
@@ -42,9 +42,8 @@ def solve():  #Backtracking
     for value in range(1, 10):
         if valid(work_board, value, (row, column)):
             work_board[row][column] = value
-
             text = font.render(str(value),True, GREEN)
-            win.blit(text, ((10 + (row * CELLSIZE)), (column * CELLSIZE)))
+            win.blit(text, ((10 + (column * CELLSIZE)), (row * CELLSIZE)))
             pygame.display.update()
             time.sleep(0.1)
             if solve():  #Recursive
