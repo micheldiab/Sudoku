@@ -2,7 +2,7 @@ from Settings import *
 from Check_Board import *
 import pygame
 import time
-def drawGrid():
+def drawGrid(win):
         for i in range(0, HEIGHT, CELLSIZE):
             if i % 3 == 0 and i != 0:
                 pygame.draw.line(win, BLACK, (i, 0), (i, HEIGHT), 4)
@@ -14,7 +14,7 @@ def drawGrid():
             else:
                 pygame.draw.line(win, BLACK, (0, j), (WIDTH, j))
 
-def writeBoard(board,color):
+def writeBoard(win,board,color):
     font = pygame.font.SysFont('arial', 50)
     for i in range(9):
         num_row = i * CELLSIZE
@@ -28,11 +28,11 @@ def writeBoard(board,color):
     pygame.display.update()
 
 
-def solve():  #Backtracking
+def solve(win):  #Backtracking
     font = pygame.font.SysFont('arial', 50)
     win.fill(WHITE)
-    drawGrid()
-    writeBoard(work_board,BLACK)
+    drawGrid(win)
+    writeBoard(win,work_board,BLACK)
     find = find_empty()
     if not find:
         return True
@@ -46,7 +46,7 @@ def solve():  #Backtracking
             win.blit(text, ((10 + (column * CELLSIZE)), (row * CELLSIZE)))
             pygame.display.update()
             time.sleep(0.1)
-            if solve():  #Recursive
+            if solve(win):  #Recursive
                 return True
             work_board[row][column] = 0
     return False
@@ -59,26 +59,3 @@ def find_empty():
                 return (i, j)
 
     return None
-def main_start(win):
-    running = True
-    while running:
-        pygame.init()
-        win.fill(WHITE)
-        drawGrid()
-        writeBoard(work_board,BLACK)
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.display.quit()
-                running = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
-                    solve()
-                    writeBoard(work_board,GREEN)
-                    writeBoard(original_board,BLACK)
-                    running = False
-                    time.sleep(5)
-
-win = pygame.display.set_mode((WIDTH, HEIGHT)) #Create display
-pygame.display.set_caption('Sudoku')
-main_start(win)  #Start
