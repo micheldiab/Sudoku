@@ -17,14 +17,14 @@ def drawGrid():
 def writeBoard(board,color):
     font = pygame.font.SysFont('arial', 50)
     for i in range(9):
-        num_width = i * CELLSIZE
+        num_row = i * CELLSIZE
         for j in range(9):
-            num_height =10+CELLSIZE*j
+            num_column =10+CELLSIZE*j
             if board[i][j] == 0:
                 text = font.render(" ", True, color)
             else:
                 text = font.render(str(board[i][j]), True, color)
-                win.blit(text, (num_height,num_width))
+                win.blit(text, (num_column,num_row))
     pygame.display.update()
 
 
