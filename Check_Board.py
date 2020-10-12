@@ -1,4 +1,4 @@
-def valid(board,value, positon):
+def valid(board,value, position):
     #check row
     for i in range(9):
         if board[position[0]][i] == value and position[1] != i:
