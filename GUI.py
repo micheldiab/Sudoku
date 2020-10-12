@@ -13,16 +13,16 @@ def drawGrid():
             else:
                 pygame.draw.line(win, BLACK, (0, j), (WIDTH, j))
 
-def writeBoard():
+def writeBoard(board,color):
     font = pygame.font.SysFont('arial', 50)
     for i in range(9):
         num_width = 10+ i * CELLSIZE
         for j in range(9):
             num_height =CELLSIZE*j
             if board[i][j] == 0:
-                text = font.render(" ", True, BLACK)
+                text = font.render(" ", True, color)
             else:
-                text = font.render(str(board[i][j]), True, BLACK)
+                text = font.render(str(board[i][j]), True, color)
                 win.blit(text, (num_width,num_height))
     pygame.display.update()
 
@@ -33,7 +33,7 @@ def main_start(win):
         pygame.init()
         win.fill(WHITE)
         drawGrid()
-        writeBoard()
+        writeBoard(work_board,BLACK)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -42,6 +42,7 @@ def main_start(win):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     #Solve
+                    writeBoard(work_board,GREEN)
                     running = False
                     time.sleep(5)
 
