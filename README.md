@@ -1,6 +1,18 @@
 # Sudoku
 
-Hello,I am planning to create a sudoku generator and solver GUI!
+Hello,This is a Sudoku game.
 
 
-The GUI will be created by pygame module.
+User instructions:
+
+Insert:
+	select cube, press the number button in your keyboard,press 'Enter' button in your keyboard to confirm.
+Delete:
+	select cube, press the 'Delete' button in your keyboard.
+Hint:
+	select cube, press the 'h' button in your keyboard.
+	
+
+The GUI was created using pygame module.
+
+Enjoy!
