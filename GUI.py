@@ -1,10 +1,11 @@
 import pygame
-from solver import *
+from Check_Board import *
 pygame.init()
 BLACK = (0,0,0)
 WHITE=(255,255,255)
 GREY=(128,128,128)
 LIGHTBLUE=(173,216,230)
+GREEN=(0,255,0)
 class Grid:
     board = [
         [7, 8, 0, 4, 0, 0, 1, 2, 0],
