@@ -1,6 +1,6 @@
 # Sudoku
 
-Hello,This is a Sudoku game.
+Hello,this is a Sudoku game.
 
 If you are a beginner Sudoku player,please read the "Sudoku_instructions" file first.
 
