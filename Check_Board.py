@@ -1,3 +1,21 @@
+import random
+def make_random_board(board):
+    temp_board1=[[0 for y in range(0,9)]for x in range (0,9)]
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+          temp_board1[i][j]=board[i][j]
+    for i in range (0,100):
+          row=random.randint(0,8)
+          col = random.randint(0,8)
+          value = random.randint(0, 9)
+          temp_board1[row][col]=value
+          if valid(temp_board1,value,(row,col)) and solve(temp_board1):
+           board[row][col]=value
+          for row_num in range(len(board)):#Copy the board again
+              for col_num in range(len(board[0])):
+                  temp_board1[row_num][col_num] = board[row_num][col_num]
+
+
 
 def solve(board):
 
@@ -38,7 +56,6 @@ def valid(board, num, pos):
             if board[i][j] == num and (i,j) != pos:
                 return False
     return True
-
 
 
 def find_empty(board):
