@@ -2,7 +2,7 @@
 
 Hello,This is a Sudoku game.
 
-If you are a beginner Sudoku player,please read the "Sudoku instructions" file first.
+If you are a beginner Sudoku player,please read the "Sudoku_instructions" file first.
 
 
 User instructions:
